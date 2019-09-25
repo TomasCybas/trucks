@@ -10,7 +10,12 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <script src="{{ asset('js/app.js') }}" ></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -33,6 +38,18 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a href="{{route('home')}}" class="nav-link">Užsakymai</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('trucks')}}" class="nav-link">Sunkvežimiai</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('drivers')}}" class="nav-link">Vairuotojai</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('clients')}}" class="nav-link">Klientų sąrašas</a>
+                        </li>
 
                     </ul>
 
@@ -73,8 +90,16 @@
         </nav>
 
         <main class="py-4">
+
+            @if(Session::has('success'))
+                <div class="container">
+                    @include('flash-message')
+                </div>
+
+            @endif
             @yield('content')
         </main>
     </div>
+@yield('scripts')
 </body>
 </html>
