@@ -45,9 +45,8 @@
                             <div class="form-group">
                                 <label for="type">Tipas</label>
                                 <select type="text" name="type" id="type" class="form-control" required>
-                                    <option selected value="{{$booking->type}}">{{$booking->type}}</option>
-                                    <option value="1">Tiesioginis</option>
-                                    <option value="2">Atgalinis</option>
+                                    <option value="1" {{$booking->type == 'tiesioginis' ? 'selected':''}}>Tiesioginis</option>
+                                    <option value="2" {{$booking->type == 'tiesioginis' ? 'selected':''}}>Atgalinis</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -106,10 +105,6 @@
         </div>
     </div>
 @endsection
-
-
-
-
 
 @include('layouts.select2_booking_scripts')
 

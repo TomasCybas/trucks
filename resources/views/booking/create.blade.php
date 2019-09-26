@@ -98,6 +98,47 @@
             </div>
         </div>
     </div>
+
+    <!-- Add city modal -->
+    <div class="modal fade" id="create_city_form_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-modal" action="{{route('city.store')}}" method="post">
+                        @csrf
+                        <div class="form-group">
+                            <label for="name">Miestas</label>
+                            <input type="text" name="name" id="name" class="form-control" value="{{old('name')}}" required>
+                        </div>
+                        @if($errors->has('name'))
+                            <div class="alert alert-danger">
+                                {{$errors->first('name')}}
+                            </div>
+                        @endif
+                        <div class="form-group">
+                            <label for="country_name">Valstybė</label>
+                            <input type="text" name="country_name" id="country_name" class="form-control" value="{{old('country_name')}}" required>
+                        </div>
+                        @if($errors->has('surname'))
+                            <div class="alert alert-danger">
+                                {{$errors->first('surname')}}
+                            </div>
+                        @endif
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Pridėti</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Atšaukti</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 
