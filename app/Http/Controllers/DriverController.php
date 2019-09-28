@@ -50,7 +50,13 @@ class DriverController extends Controller
             'surname' => 'required',
             'date_of_birth' => 'required',
             'driver_license_no' => 'required',
-        ]);
+        ],
+            [
+                'name.required' => 'Vardo laukas privalomas',
+                'surname.required' => 'Pavardės laukas privalomas',
+                'date_of_birth.required' => 'Gimimo datos laukas privalomas',
+                'driver_license_no.required' => 'Vairuotojo paž. nr. laukas privalomas',
+            ]);
         $driver = Driver::find($id);
 
         $driver->name = $request->name;
@@ -68,4 +74,4 @@ class DriverController extends Controller
         return redirect()->route('drivers')->with('success', "Vairuotojas $driver->name ištrintas.");
     }
 }
-//TODO: add validation error handling
+

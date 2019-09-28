@@ -52,6 +52,7 @@ class ClientController extends Controller
             'vat_code' => 'unique:clients,vat_code',
         ],
             [
+                'name.required' => 'Pavadinimo laukas privalomas',
                 'company_code.unique' => 'Įmonė su tokiu įmonės kodu jau egzistuoja.',
                 'vat_code.unique' => 'Įmonė su tokiu PVM kodu jau egzistuoja.',
 
@@ -72,5 +73,5 @@ class ClientController extends Controller
 
         return redirect()->route('clients');
     }
-    //TODO: add show, methods,
+    //TODO: add show methods,
 }

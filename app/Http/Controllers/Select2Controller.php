@@ -34,4 +34,36 @@ class Select2Controller extends Controller
         }
         return ['results' => $result];
     }
+
+    public function truckSelect2(Request $request){
+        $querry = $request->term;
+        $trucks = DB::table('trucks')->where('brand', 'LIKE', $querry. '%')->
+        orWhere('model', 'LIKE', '%' .$querry. '%')->
+            orWhere('reg_number', 'LIKE', '%' .$querry. '%')->get();
+        $result = [];
+        foreach ($trucks as $truck) {
+            $result[] = [
+                'id' => $truck->id,
+                'text' => $truck->brand.' '.$truck->model.' '.$truck->reg_number
+            ];
+        }
+        return ['results' => $result];
+    }
+
+
+    public function driverSelect2(Request $request){
+        $querry = $request->term;
+        $drivers = DB::table('drivers')->where('name', 'LIKE', $querry. '%')->
+        orWhere('surname', 'LIKE', '%' .$querry. '%')->get();
+        $result = [];
+        foreach ($drivers as $driver) {
+            $result[] = [
+                'id' => $driver->id,
+                'text' => $driver->name.' '.$driver->surname
+            ];
+        }
+        return ['results' => $result];
+    }
+
+
 }

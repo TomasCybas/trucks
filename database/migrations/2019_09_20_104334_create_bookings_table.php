@@ -18,7 +18,7 @@ class CreateBookingsTable extends Migration
             $table->unsignedBigInteger('client_id');
             //TODO container types to be added
             $table->enum('container_type', ['type_a', 'type_b']);
-            $table->string('container_no', 10);
+            $table->string('container_no', 11);
             $table->unsignedBigInteger('loading_city_id');
             $table->unsignedBigInteger('unloading_city_id');
             $table->enum('type', ['tiesioginis', 'atgalinis']);

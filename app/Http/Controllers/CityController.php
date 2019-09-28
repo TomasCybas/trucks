@@ -14,9 +14,14 @@ class CityController extends Controller
     public function store(Request $request){
 
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|unique:cities,name',
             'country_name' => 'required',
-        ]);
+        ],
+            [
+                'name.unique' => 'Miestas tokiu pavadinimu jau egzistuoja',
+                'required.name' => 'Miesto laukas privalomas',
+                'required.country_name' => 'Valstybės laukas privalomas',
+            ]);
 
         $city = new City();
         $city->name = $request->name;
@@ -27,5 +32,4 @@ class CityController extends Controller
 
 
     }
-    //TODO: add create method, validation
 }
