@@ -49,10 +49,6 @@
                                 <input type="date" name="loading_date" id="loading_date" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label for="unloading_date">Iškrovimo data</label>
-                                <input type="date" name="unloading_date" id="unloading_date" class="form-control" required>
-                            </div>
-                            <div class="form-group">
                                 <label for="driver_id">Vairuotojas</label>
                                 <select type="text" name="driver_id" id="driver_id" class="form-control" required>
                                     <option></option>
@@ -81,13 +77,6 @@
                             <div class="form-group">
                                 <label for="price">Kaina</label>
                                 <input type="text" name="price" id="price" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="currency">Valiuta</label>
-                                <select type="text" name="currency" id="currency" class="form-control" required>
-                                    <option value="1">EUR</option>
-                                    <option value="2">USD</option>
-                                </select>
                             </div>
 
 

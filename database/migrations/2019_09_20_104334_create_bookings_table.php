@@ -23,13 +23,11 @@ class CreateBookingsTable extends Migration
             $table->unsignedBigInteger('unloading_city_id');
             $table->enum('type', ['tiesioginis', 'atgalinis']);
             $table->date('loading_date');
-            $table->date('unloading_date');
             $table->unsignedBigInteger('driver_id');
             $table->unsignedBigInteger('truck_id');
             //TODO vat to be decided
             $table->enum('vat', ['yes', 'no']);
             $table->integer('price')->unsigned();
-            $table->enum('currency',['euro', 'usd']);
             $table->timestamps();
 
 

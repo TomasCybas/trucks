@@ -14,7 +14,6 @@ class BookingController extends Controller
         $bookings = Booking::with([
             'client',
             'loadingCity',
-            'unloadingCity',
             'truck',
             'driver',
         ])->get();
@@ -43,12 +42,10 @@ class BookingController extends Controller
             'type' => 'required',
             'container_no' => 'required',
             'loading_date' => 'required',
-            'unloading_date' => 'required',
             'driver_id' => 'required',
             'truck_id' => 'required',
             'vat' => 'required',
             'price' => 'required',
-            'currency' => 'required',
         ],
             [
                 'required' => 'Laukas privalomas'
@@ -62,12 +59,10 @@ class BookingController extends Controller
         $booking->type = $request->type;
         $booking->container_no = $request->container_no;
         $booking->loading_date = $request->loading_date;
-        $booking->unloading_date = $request->unloading_date;
         $booking->driver_id = $request->driver_id;
         $booking->truck_id = $request->truck_id;
         $booking->vat = $request->vat;
         $booking->price =  (float)$request->price*100;
-        $booking->currency = $request->currency;
         $booking->save();
         return redirect()->route('bookings')->with('success', 'Užsakymas sukurtas.');
     }
@@ -94,12 +89,10 @@ class BookingController extends Controller
             'type' => 'required',
             'container_no' => 'required',
             'loading_date' => 'required',
-            'unloading_date' => 'required',
             'driver_id' => 'required',
             'truck_id' => 'required',
             'vat' => 'required',
             'price' => 'required',
-            'currency' => 'required',
         ],
             [
                 'required' => 'Laukas privalomas'
@@ -113,12 +106,10 @@ class BookingController extends Controller
         $booking->type = $request->type;
         $booking->container_no = $request->container_no;
         $booking->loading_date = $request->loading_date;
-        $booking->unloading_date = $request->unloading_date;
         $booking->driver_id = $request->driver_id;
         $booking->truck_id = $request->truck_id;
         $booking->vat = $request->vat;
         $booking->price =  (float)$request->price*100;
-        $booking->currency = $request->currency;
         $booking->save();
 
         return redirect()->route('bookings')->with('success', 'Užsakymas atnaujintas.');

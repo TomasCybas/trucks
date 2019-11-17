@@ -18,6 +18,7 @@ class CreateClientsTable extends Migration
             $table->string('name', 35);
             $table->string('company_code', 20)->unique()->nullable();
             $table->string('vat_code', 20)->unique()->nullable();
+            $table->string('deferred_payment', 3)->nullable();
             $table->string('address');
             $table->timestamps();
         });
