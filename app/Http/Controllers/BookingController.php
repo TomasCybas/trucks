@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 class BookingController extends Controller
 {
     public function index(){
+        $drivers = Driver::all();
+        $trucks = Truck::all();
         $bookings = Booking::with([
             'client',
             'loadingCity',
@@ -19,6 +21,8 @@ class BookingController extends Controller
         ])->get();
         return view('booking.index', [
             'bookings' => $bookings,
+            'drivers' => $drivers,
+            'trucks' => $trucks,
         ]);
     }
 

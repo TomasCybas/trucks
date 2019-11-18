@@ -56,6 +56,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/select2/clients', 'Select2Controller@clientSelect2')->name('select.client');
     Route::get('/select2/trucks', 'Select2Controller@truckSelect2')->name('select.truck');
     Route::get('/select2/drivers', 'Select2Controller@driverSelect2')->name('select.driver');
+
+    //Filter routes
+    Route::post('/filter/bookings', 'BookingsFilterController@filterBookings')->name('filter.bookings');
+
 });
 
 

@@ -9,6 +9,7 @@
          * @param {selector} formEl    new entry creation form DOM element. ID or class selector.
          * @param {selector} errorEl   DOM element used for displaying errors. ID or class selector.
          */
+
         function handleSelect2CreateNew(select2El, modalEl, formEl, errorEl){
             modalEl.on('show.bs.modal', function () {
                 select2El.select2('close');
@@ -42,6 +43,7 @@
             })
         }
 
+
         $(document).ready(function () {
             //Handles select search for cities
             $(".city-select2").select2({
@@ -73,7 +75,7 @@
             );
 
             //Handles select search for clients
-            $("#client_id").select2({
+            $(".client-select2").select2({
                 ajax: {
                     url: '{{route('select.client')}}'
                 },
@@ -103,7 +105,7 @@
 
 
             //Handles select search for drivers
-            $("#driver_id").select2({
+            $(".driver-select2").select2({
                 ajax: {
                     url: '{{route('select.driver')}}'
                 },
@@ -132,7 +134,7 @@
             );
 
             //Handles select search for trucks
-            $("#truck_id").select2({
+            $(".truck-select2").select2({
                 ajax: {
                     url: '{{route('select.truck')}}'
                 },
@@ -152,6 +154,7 @@
                     return markup
                 }
             });
+
             handleSelect2CreateNew(
                 $('#truck_id'),
                 $('#create_truck_form_modal'),

@@ -12,7 +12,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for="client_id">Klientas</label>
-                                <select type="text" name="client_id" id="client_id" class="form-control" required></select>
+                                <select type="text" name="client_id" id="client_id" class="form-control client-select2" required></select>
                             </div>
                             <div class="form-group">
                                 <label for="loading_city_id">Pakrovimo miestas</label>
@@ -50,7 +50,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="driver_id">Vairuotojas</label>
-                                <select type="text" name="driver_id" id="driver_id" class="form-control" required>
+                                <select type="text" name="driver_id" id="driver_id" class="form-control driver-select2" required>
                                     <option></option>
                                     @foreach($drivers as $driver)
                                         <option value="{{$driver->id}}">{{$driver->name}} {{$driver->surname}}</option>
@@ -60,7 +60,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="truck_id">Sunkvežimis</label>
-                                <select type="text" name="truck_id" id="truck_id" class="form-control" required>
+                                <select type="text" name="truck_id" id="truck_id" class="form-control truck-select2" required>
                                     <option></option>
                                     @foreach($trucks as $truck)
                                         <option value="{{$truck->id}}">{{$truck->brand}} {{$truck->model}}, valst. nr.: {{$truck->reg_number}}</option>

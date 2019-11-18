@@ -49360,6 +49360,39 @@ var app = new Vue({
   el: '#app'
 });
 
+function handleSelect2CreateNew(select2El, modalEl, formEl, errorEl) {
+  modalEl.on('show.bs.modal', function () {
+    select2El.select2('close');
+  }).on('hidden.bs.modal', function () {
+    $(this).find('form').trigger('reset');
+    errorEl.removeClass('d-block').addClass('d-none').html('');
+  });
+  formEl.on('submit', function (e) {
+    e.preventDefault();
+    var url = $(this).attr('action');
+    $.ajax({
+      type: 'post',
+      url: url,
+      data: formEl.serialize(),
+      error: function error(data) {
+        var errors = data.responseJSON;
+        var errorsHtml = '';
+
+        if (!$.isEmptyObject(errors)) {
+          $.each(errors.errors, function (key, value) {
+            errorsHtml += "<p>" + value[0] + "</p>";
+          });
+          errorEl.addClass('d-block').html(errorsHtml);
+        }
+      },
+      success: function success() {
+        errorEl.removeClass('d-block').addClass('d-none').html('');
+        modalEl.modal('hide');
+      }
+    });
+  });
+}
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

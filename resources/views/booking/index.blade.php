@@ -9,10 +9,86 @@
 
                     <div class="card-body">
                         <a href="{{route('booking.create')}}" class="btn btn-lg btn-success mb-3">Kurti naują</a>
-                        <a href="#" class="btn btn-lg btn-dark mb-3 float-right">Filtruoti</a>
-                        <form>
-                            {{--TODO: create a form for filtering results--}}
-                        </form>
+                        <a href="#" class="btn btn-lg btn-dark mb-3 float-right">Filtrai</a>
+                        <div class="col-12 filter-container">
+                            <form action="{{route('filter.bookings')}}" method="post">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="client_id">Klientas</label>
+                                    <select type="text" name="client_id" id="client_id" class="form-control client-select2"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="loading_city_id">Pakrovimo miestas</label>
+                                    <select type="text" name="loading_city_id" id="loading_city_id" class="form-control city-select2">
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="unloading_city_id">Iškrovimo miestas</label>
+                                    <select type="text" name="unloading_city_id" id="unloading_city_id" class="form-control city-select2">
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="container_no">Konteinerio numeris</label>
+                                    <input type="text" name="container_no" id="container_no" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="container_type">Konteinerio tipas</label>
+                                    <select type="text" name="container_type" id="container_type" class="form-control">
+                                        <option value="">Pasirinkite konteinerio tipą </option>
+                                        <option value="1">Type A</option>
+                                        <option value="2">Type B</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="type">Tipas</label>
+                                    <select type="text" name="type" id="type" class="form-control">
+                                        <option value="">Pasirinkite pervežimo tipą</option>
+                                        <option value="1">Tiesioginis</option>
+                                        <option value="2">Atgalinis</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="loading_date">Pakrovimo data</label>
+                                    <input type="date" name="loading_date" id="loading_date" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="driver_id">Vairuotojas</label>
+                                    <select type="text" name="driver_id" id="driver_id" class="form-control driver-select2">
+                                        <option></option>
+                                        @foreach($drivers as $driver)
+                                            <option value="{{$driver->id}}">{{$driver->name}} {{$driver->surname}}</option>
+                                        @endforeach
+
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="truck_id">Sunkvežimis</label>
+                                    <select type="text" name="truck_id" id="truck_id" class="form-control truck-select2">
+                                        <option></option>
+                                        @foreach($trucks as $truck)
+                                            <option value="{{$truck->id}}">{{$truck->brand}} {{$truck->model}}, valst. nr.: {{$truck->reg_number}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="vat">PVM</label>
+                                    <select type="text" name="vat" id="vat" class="form-control">
+                                        <option selected value="2">Ne</option>
+                                        <option value="1" >Taip</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="price">Kaina</label>
+                                    <input type="text" name="price" id="price" class="form-control">
+                                </div>
+
+
+                                <button type="submit" class="btn btn-dark">Filtruoti</button>
+
+                                {{--TODO: create a form for filtering results--}}
+                            </form>
+
+                        </div>
                         <table class="table">
                             <thead>
                             <tr>
@@ -59,3 +135,5 @@
         </div>
     </div>
 @endsection
+
+@include('layouts.select2_booking_scripts')
