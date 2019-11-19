@@ -16,6 +16,7 @@ class BookingController extends Controller
         $bookings = Booking::with([
             'client',
             'loadingCity',
+            'unloadingCity',
             'truck',
             'driver',
         ])->get();

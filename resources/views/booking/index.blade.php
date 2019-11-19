@@ -9,8 +9,8 @@
 
                     <div class="card-body">
                         <a href="{{route('booking.create')}}" class="btn btn-lg btn-success mb-3">Kurti naują</a>
-                        <a href="#" class="btn btn-lg btn-dark mb-3 float-right">Filtrai</a>
-                        <div class="col-12 filter-container">
+                        <a href="#" id="filter_menu_trigger" class="btn btn-lg btn-dark mb-3 float-right">Filtrai</a>
+                        <div class="col-12 filter-container d-none">
                             <form action="{{route('filter.bookings')}}" method="post">
                                 @csrf
                                 <div class="form-group">
@@ -73,8 +73,9 @@
                                 <div class="form-group">
                                     <label for="vat">PVM</label>
                                     <select type="text" name="vat" id="vat" class="form-control">
-                                        <option selected value="2">Ne</option>
-                                        <option value="1" >Taip</option>
+                                        <option value=""></option>
+                                        <option value="no">Ne</option>
+                                        <option value="yes" >Taip</option>
                                     </select>
                                 </div>
                                 <div class="form-group">

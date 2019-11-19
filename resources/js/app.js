@@ -31,6 +31,16 @@ const app = new Vue({
     el: '#app',
 });
 
+$(document).ready(function () {
+
+    $('#filter_menu_trigger').on('click', function () {
+        $('.filter-container').slideToggle(300);
+    })
+
+
+});
+
+
 
 
 

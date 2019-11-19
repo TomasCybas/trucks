@@ -91,7 +91,7 @@
 
         <main class="py-4">
 
-            @if(Session::has('success'))
+            @if(Session::has('error') || ('success'))
                 <div class="container">
                     @include('flash-message')
                 </div>
