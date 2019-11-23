@@ -19,7 +19,7 @@ class BookingsFilterController extends Controller
             }
         }
         if(sizeof($query) <= 0) {
-            return redirect()->route('bookings')->with('success', 'pasirinkite filtrą');
+            return redirect()->route('bookings')->with('error', 'Norėdami filtruoti pasirinkite filtrą');
         }
 
 
@@ -34,7 +34,13 @@ class BookingsFilterController extends Controller
 
 
 
-        $bookings = Booking::with(['driver', 'truck', 'client', 'loadingCity', 'unloadingCity'])->where($query)->get();
+        $bookings = Booking::with([
+            'driver',
+            'truck',
+            'client',
+            'loadingCity',
+            'unloadingCity'
+        ])->where($query)->get();
         $drivers = Driver::all();
         $trucks = Truck::all();
 
