@@ -22,18 +22,6 @@ class BookingsFilterController extends Controller
             return redirect()->route('bookings')->with('error', 'Norėdami filtruoti pasirinkite filtrą');
         }
 
-
-        /* if($request->has('client_id')) {
-             $filterData['client_id'] = $request->client_id;
-         }
-         dd($filterData);*/
-
-
-        //TODO: if rquest has only null values return false or error or smth; maybe make a separate date filter,
-        // make a separate view for filtered results.
-
-
-
         $bookings = Booking::with([
             'driver',
             'truck',
@@ -44,11 +32,18 @@ class BookingsFilterController extends Controller
         $drivers = Driver::all();
         $trucks = Truck::all();
 
-        return view('booking.index', [
-            'bookings' => $bookings,
-            'drivers' => $drivers,
-            'trucks' => $trucks,
-        ]);
+        if($bookings->isEmpty()){
+            return redirect()->route('bookings')->with('error', 'Nėra rezultatų su pasirinktais parametrais');
+        }
+        else {
+            return view('booking.index', [
+                'bookings' => $bookings,
+                'drivers' => $drivers,
+                'trucks' => $trucks,
+            ]);
+        }
+
+
 
     }
 }

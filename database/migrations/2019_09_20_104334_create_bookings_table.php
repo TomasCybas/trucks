@@ -17,16 +17,15 @@ class CreateBookingsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('client_id');
             //TODO container types to be added
-            $table->enum('container_type', ['type_a', 'type_b']);
+            $table->enum('container_type', ['Tipas A', 'Tipas B']);
             $table->string('container_no', 11);
             $table->unsignedBigInteger('loading_city_id');
             $table->unsignedBigInteger('unloading_city_id');
-            $table->enum('type', ['tiesioginis', 'atgalinis']);
+            $table->enum('type', ['Tiesioginis', 'Atgalinis']);
             $table->date('loading_date');
             $table->unsignedBigInteger('driver_id');
             $table->unsignedBigInteger('truck_id');
-            //TODO vat to be decided
-            $table->enum('vat', ['yes', 'no']);
+            $table->enum('vat', ['Taip', 'Ne']);
             $table->integer('price')->unsigned();
             $table->timestamps();
 

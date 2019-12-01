@@ -10,85 +10,73 @@
                     <div class="card-body">
                         <a href="{{route('booking.create')}}" class="btn btn-lg btn-success mb-3">Kurti naują</a>
                         <a href="#" id="filter_menu_trigger" class="btn btn-lg btn-dark mb-3 float-right">Filtrai</a>
-                        <div class="col-12 filter-container d-none">
-                            <form action="{{route('filter.bookings')}}" method="post">
-                                @csrf
-                                <div class="form-group">
-                                    <label for="client_id">Klientas</label>
-                                    <select type="text" name="client_id" id="client_id" class="form-control client-select2"></select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="loading_city_id">Pakrovimo miestas</label>
-                                    <select type="text" name="loading_city_id" id="loading_city_id" class="form-control city-select2">
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="unloading_city_id">Iškrovimo miestas</label>
-                                    <select type="text" name="unloading_city_id" id="unloading_city_id" class="form-control city-select2">
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="container_no">Konteinerio numeris</label>
-                                    <input type="text" name="container_no" id="container_no" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="container_type">Konteinerio tipas</label>
-                                    <select type="text" name="container_type" id="container_type" class="form-control">
-                                        <option value="">Pasirinkite konteinerio tipą </option>
-                                        <option value="1">Type A</option>
-                                        <option value="2">Type B</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="type">Tipas</label>
-                                    <select type="text" name="type" id="type" class="form-control">
-                                        <option value="">Pasirinkite pervežimo tipą</option>
-                                        <option value="1">Tiesioginis</option>
-                                        <option value="2">Atgalinis</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="loading_date">Pakrovimo data</label>
-                                    <input type="date" name="loading_date" id="loading_date" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="driver_id">Vairuotojas</label>
-                                    <select type="text" name="driver_id" id="driver_id" class="form-control driver-select2">
-                                        <option></option>
-                                        @foreach($drivers as $driver)
-                                            <option value="{{$driver->id}}">{{$driver->name}} {{$driver->surname}}</option>
-                                        @endforeach
+                        <div class="row">
+                            <div class="col-12 filter-container mb-3">
+                                <form action="{{route('filter.bookings')}}" method="post">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="client_id">Klientas</label>
+                                                <select type="text" name="client_id" id="client_id"
+                                                        class="form-control client-select2 noModal"></select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="loading_city_id">Pakrovimo miestas</label>
+                                                <select type="text" name="loading_city_id" id="loading_city_id"
+                                                        class="form-control city-select2 noModal">
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="unloading_city_id">Iškrovimo miestas</label>
+                                                <select type="text" name="unloading_city_id" id="unloading_city_id"
+                                                        class="form-control city-select2 noModal">
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="container_type">Konteinerio tipas</label>
+                                                <select type="text" name="container_type" id="container_type"
+                                                        class="form-control">
+                                                    <option value="">Pasirinkite konteinerio tipą</option>
+                                                    <option value="1">Type A</option>
+                                                    <option value="2">Type B</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="type">Tipas</label>
+                                                <select type="text" name="type" id="type" class="form-control">
+                                                    <option value="">Pasirinkite pervežimo tipą</option>
+                                                    <option value="1">Tiesioginis</option>
+                                                    <option value="2">Atgalinis</option>
+                                                </select>
+                                            </div>
 
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="truck_id">Sunkvežimis</label>
-                                    <select type="text" name="truck_id" id="truck_id" class="form-control truck-select2">
-                                        <option></option>
-                                        @foreach($trucks as $truck)
-                                            <option value="{{$truck->id}}">{{$truck->brand}} {{$truck->model}}, valst. nr.: {{$truck->reg_number}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="vat">PVM</label>
-                                    <select type="text" name="vat" id="vat" class="form-control">
-                                        <option value=""></option>
-                                        <option value="no">Ne</option>
-                                        <option value="yes" >Taip</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="price">Kaina</label>
-                                    <input type="text" name="price" id="price" class="form-control">
-                                </div>
+                                            <div class="form-group">
+                                                <label for="loading_date">Pakrovimo data</label>
+                                                <input type="date" name="loading_date" id="loading_date"
+                                                       class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="driver_id">Vairuotojas</label>
+                                                <select type="text" name="driver_id" id="driver_id"
+                                                        class="form-control driver-select2 noModal">
+                                                    <option></option>
+                                                    @foreach($drivers as $driver)
+                                                        <option
+                                                            value="{{$driver->id}}">{{$driver->name}} {{$driver->surname}}</option>
+                                                    @endforeach
 
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-dark">Filtruoti</button>
 
-                                <button type="submit" class="btn btn-dark">Filtruoti</button>
-
-                                {{--TODO: create a form for filtering results--}}
-                            </form>
-
+                                    {{--TODO: create a form for filtering results--}}
+                                </form>
+                            </div>
                         </div>
                         <table class="table">
                             <thead>
@@ -121,10 +109,13 @@
                                     <td>{{$booking->truck->brand.' '.$booking->truck->model.' '.$booking->truck->reg_number}}</td>
                                     <td>{{$booking->vat}}</td>
                                     <td>{{$booking->price/100}}</td>
-
                                     <td>
-                                        <a href="{{route('booking.edit', $booking->id)}}" class="btn btn-sm btn-success">Koreguoti</a>
-                                        <a href="{{route('booking.delete', $booking->id)}}" onclick="return confirm('Ar tikrai norite ištrinti?')" class="btn btn-sm btn-danger">Ištrinti</a>
+                                        <a href="#" class="btn btn-sm btn-success mb-1">Sąskaita</a>
+                                        <a href="{{route('booking.edit', $booking->id)}}"
+                                           class="btn btn-sm btn-success mb-1">Koreguoti</a>
+                                        <a href="{{route('booking.delete', $booking->id)}}"
+                                           onclick="return confirm('Ar tikrai norite ištrinti?')"
+                                           class="btn btn-sm btn-danger">Ištrinti</a>
                                     </td>
                                 </tr>
                             @endforeach

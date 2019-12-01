@@ -50,6 +50,7 @@
                 ajax: {
                     url: '{{route('select.city')}}'
                 },
+                width: "100%",
                 placeholder: "Pasirinkti miestą",
                 language: {
                     "noResults": function () {
@@ -59,7 +60,11 @@
                             'data-toggle="modal" data-target="#create_city_form_modal">' +
                             'Pridėti naują' +
                             '</button>';
-                        return 'Nėra atitikmenų.' + modalButton;
+                        if($(".city-select2").hasClass('noModal')) {
+                            return 'Nėra atitikmenų'
+                        } else {
+                            return 'Nėra atitikmenų.' + modalButton;
+                        }
                     }
                 },
                 escapeMarkup: function (markup) {
@@ -80,6 +85,7 @@
                     url: '{{route('select.client')}}'
                 },
                 placeholder: "Pasirinkti klientą",
+                width: "100%",
                 language: {
                     "noResults": function () {
                         var modalButton =
@@ -88,7 +94,11 @@
                             'data-toggle="modal" data-target="#create_client_form_modal">' +
                             'Pridėti naują' +
                             '</button>';
-                        return 'Nėra atitikmenų.' + modalButton;
+                        if($(".client-select2").hasClass('noModal')) {
+                            return 'Nėra atitikmenų'
+                        } else {
+                            return 'Nėra atitikmenų.' + modalButton;
+                        }
                     }
                 },
                 escapeMarkup: function (markup) {
@@ -110,6 +120,7 @@
                     url: '{{route('select.driver')}}'
                 },
                 placeholder: "Pasirinkti vairuotoją",
+                width: "100%",
                 language: {
                     "noResults": function () {
                         var modalButton =
@@ -118,7 +129,11 @@
                             'data-toggle="modal" data-target="#create_driver_form_modal">' +
                             'Pridėti naują' +
                             '</button>';
-                        return 'Nėra atitikmenų.' + modalButton;
+                        if($(".driver-select2").hasClass('noModal')) {
+                            return 'Nėra atitikmenų.'
+                        } else {
+                            return 'Nėra atitikmenų.' + modalButton;
+                        }
                     }
                 },
                 escapeMarkup: function (markup) {
@@ -139,6 +154,7 @@
                     url: '{{route('select.truck')}}'
                 },
                 placeholder: "Pasirinkti sunkvežimį",
+                width: "100%",
                 language: {
                     "noResults": function () {
                         var modalButton =
@@ -147,7 +163,11 @@
                             'data-toggle="modal" data-target="#create_truck_form_modal">' +
                             'Pridėti naują' +
                             '</button>';
-                        return 'Nėra atitikmenų.' + modalButton;
+                        if($(".truck-select2").hasClass('noModal')) {
+                            return 'Nėra atitikmenų'
+                        } else {
+                            return 'Nėra atitikmenų.' + modalButton;
+                        }
                     }
                 },
                 escapeMarkup: function (markup) {

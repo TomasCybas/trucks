@@ -24,13 +24,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/driver/update/{driver_id}', 'DriverController@update')->name('driver.update');
     Route::get('/driver/delete/{driver_id}', 'DriverController@delete')->name('driver.delete');
 
-//Trucks routes
+    //Trucks routes
     Route::get('/trucks', 'TruckController@index')->name('trucks');
     Route::get('/truck/create', 'TrucKController@create')->name('truck.create');
     Route::post('/truck/store', 'TruckController@store')->name('truck.store');
     Route::get('/truck/delete/{truck_id}', 'TruckController@delete')->name('truck.delete');
 
-//Bookings routes
+    //Bookings routes
     Route::get('/', 'BookingController@index')->name('home');
     Route::get('/bookings', 'BookingController@index')->name('bookings');
     Route::get('/booking/create', 'BookingController@create')->name('booking.create');
@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/booking/update/{id}', 'BookingController@update')->name('booking.update');
     Route::get('/booking/delete/{id}', 'BookingController@delete')->name('booking.delete');
 
-//Clients routes
+    //Clients routes
     Route::get('/clients', 'ClientController@index')->name('clients');
     Route::get('/client/create', 'ClientController@create')->name('client.create');
     Route::post('/client/store', 'ClientController@store')->name('client.store');
@@ -47,11 +47,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/client/update{id}', 'ClientController@update')->name('client.update');
     Route::get('/client/delete{id}', 'ClientController@delete')->name('client.delete');
 
-//Cities routes
+    //Cities routes
     Route::get('/city/create', 'CityController@create')->name('city.create');
     Route::post('/city/store', 'CityController@store')->name('city.store');
 
-//select2 routes
+    //select2 routes
     Route::get('/select2/cities', 'Select2Controller@citySelect2')->name('select.city');
     Route::get('/select2/clients', 'Select2Controller@clientSelect2')->name('select.client');
     Route::get('/select2/trucks', 'Select2Controller@truckSelect2')->name('select.truck');
@@ -59,6 +59,11 @@ Route::middleware('auth')->group(function () {
 
     //Filter routes
     Route::post('/filter/bookings', 'BookingsFilterController@filterBookings')->name('filter.bookings');
+
+    //Invoice routes
+    Route::get('/invoices', 'InvoiceController@index')->name('invoices');
+    Route::get('/invoice/create/{booking}', 'InvoiceController@create')->name('invoice.create');
+    Route::post('/invoice/store', 'InvoiceController@store')->name('invoice.store');
 
 });
 

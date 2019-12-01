@@ -6,3 +6,34 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+
+.filter-container {
+    display: none;
+}
+
+.select2-container--default .select2-selection--single {
+    height: 37px;
+    border: 1px solid #ced4da;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+    padding-top: 3px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+    color: #495057;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    top: 5px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b,
+.select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b {
+    border-color: #495057 transparent transparent transparent;
+    border-width: 6px 3px 0 3px;
+
+}
+
+
