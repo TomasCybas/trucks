@@ -38,6 +38,7 @@ $(document).ready(function () {
     });
 
     calcTotals();
+    calcGrandTotal();
 
     // generate invoice lines
     var i = 1;
@@ -85,8 +86,9 @@ $(document).ready(function () {
 
         $('.invoice-lines-container').append(invoiceLine);
         i++;
-        calcTotals();
-        //delete invoice lines
+        $('input.item-quantity, input.item-price').on('change', function () {
+            calcTotals();
+        });        //delete invoice lines
         $('.remove-line').on('click', function (e) {
             e.preventDefault();
             $(this).closest($('.invoice-line')).remove();
@@ -99,20 +101,23 @@ $(document).ready(function () {
 
     //calc total for each line and grand total
     function calcTotals() {
-        var total=0;
-        $('input.item-quantity, input.item-price').on('change', function () {
-            $('.invoice-line').each(function () {
-                var qnt = parseFloat($(this).find('input.item-quantity').val().replace(',', '.'));
-                var price = parseFloat($(this).find('input.item-price').val().replace(',', '.'));
-                total = qnt*price;
-                console.log(total);
-                if(total>=0) {
-                    $(this).find('input.item-total').val(total)
-                }
-                calcGrandTotal();
-            })
+        var total = 0;
+        $('.invoice-line').each(function () {
+            var qnt = parseFloat($(this).find('input.item-quantity').val().replace(',', '.'));
+            var price = parseFloat($(this).find('input.item-price').val().replace(',', '.'));
+            total = qnt * price;
+            console.log(total);
+            if (total >= 0) {
+                $(this).find('input.item-total').val(total)
+            }
+            calcGrandTotal();
         });
     }
+
+        $('input.item-quantity, input.item-price').on('change', function () {
+            calcTotals();
+        });
+
 
     function calcGrandTotal() {
         var grandTotal = 0;
@@ -120,6 +125,7 @@ $(document).ready(function () {
             grandTotal += parseFloat($(this).val());
         });
         $('.grand-total span').html(grandTotal);
+        $('input[name=grand_total]').val(grandTotal);
     }
 
 

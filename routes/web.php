@@ -15,7 +15,7 @@
 //Authentification
 Auth::routes();
 
-Route::middleware('auth')->group(function () {
+//Route::middleware('auth')->group(function () {
     //Drivers routes
     Route::get('/drivers', 'DriverController@index')->name('drivers');
     Route::get('/driver/create', 'DriverController@create')->name('driver.create');
@@ -63,9 +63,9 @@ Route::middleware('auth')->group(function () {
     //Invoice routes
     Route::get('/invoices', 'InvoiceController@index')->name('invoices');
     Route::get('/invoice/create/{booking}', 'InvoiceController@create')->name('invoice.create');
-    Route::post('/invoice/store', 'InvoiceController@store')->name('invoice.store');
+    Route::post('/invoice/store/{booking}', 'InvoiceController@store')->name('invoice.store');
 
-});
+//});
 
 
 

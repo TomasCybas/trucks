@@ -110,7 +110,7 @@
                                     <td>{{$booking->vat}}</td>
                                     <td>{{$booking->price/100}}</td>
                                     <td>
-                                        <a href="#" class="btn btn-sm btn-success mb-1">Sąskaita</a>
+                                        <a href="{{route('invoice.create', $booking)}}" class="btn btn-sm btn-success mb-1">Sąskaita</a>
                                         <a href="{{route('booking.edit', $booking->id)}}"
                                            class="btn btn-sm btn-success mb-1">Koreguoti</a>
                                         <a href="{{route('booking.delete', $booking->id)}}"
