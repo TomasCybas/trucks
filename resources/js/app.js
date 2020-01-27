@@ -49,7 +49,7 @@ $(document).ready(function () {
             '                                        <div class="form-group form-row">\n' +
             '                                            <label class="col-form-label col-12">\n' +
             '                                                Paslauga/pavadinimas\n' +
-            '                                                <input type="text" name="lines[' + i + '][item_name]" class="form-control item-name" >\n' +
+            '                                                <input type="text" name="lines[' + i + '][item_name]" class="form-control item-name" required>\n' +
             '                                            </label>\n' +
             '                                        </div>\n' +
             '\n' +
@@ -58,7 +58,7 @@ $(document).ready(function () {
             '                                        <div class="form-group form-row">\n' +
             '                                            <label class="col-form-label col-12">\n' +
             '                                                Kiekis\n' +
-            '                                                <input type="text" name=" lines[' + i + '][item_quantity]" class="form-control item-quantity" >\n' +
+            '                                                <input type="text" name=" lines[' + i + '][item_quantity]" class="form-control item-quantity" required >\n' +
             '                                            </label>\n' +
             '                                        </div>\n' +
             '                                    </div>\n' +
@@ -66,7 +66,7 @@ $(document).ready(function () {
             '                                        <div class="form-group form-row">\n' +
             '                                            <label class="col-form-label col-12">\n' +
             '                                                Kaina\n' +
-            '                                                <input type="text" name="lines[' + i + '][item_price]" class="form-control item-price" >\n' +
+            '                                                <input type="text" name="lines[' + i + '][item_price]" class="form-control item-price" required >\n' +
             '                                            </label>\n' +
             '                                        </div>\n' +
             '                                    </div>\n' +
@@ -74,7 +74,7 @@ $(document).ready(function () {
             '                                        <div class="form-group form-row">\n' +
             '                                            <label class="col-form-label col-9">\n' +
             '                                                Viso\n' +
-            '                                                <input type="text" name="lines[' + i + '][item_total]" class="form-control item-total" value="" disabled>\n' +
+            '                                                <input type="text" name="lines[' + i + '][item_total]" class="form-control item-total" value="" readonly>\n' +
             '                                            </label>\n' +
             '                                           <div class="col-form-label col-2">\n' +
             '                                              <br>\n' +

@@ -19,7 +19,7 @@ class BookingController extends Controller
             'unloadingCity',
             'truck',
             'driver',
-        ])->get();
+        ])->orderBy('created_at', 'desc')->get();
         return view('booking.index', [
             'bookings' => $bookings,
             'drivers' => $drivers,

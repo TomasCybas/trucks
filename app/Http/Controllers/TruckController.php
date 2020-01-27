@@ -20,7 +20,7 @@ class TruckController extends Controller
         $this->validate($request, [
             'brand' => 'required',
             'model' => 'required',
-            'reg_number' => 'required|unique:trucks,reg_number',
+            'reg_number' => "required|unique:trucks,reg_number",
         ],
             [
                 'reg_number.unique' => 'Sunkvežimis su tokiu valst. nr. jau egzistuoja.',

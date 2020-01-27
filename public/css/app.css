@@ -10644,6 +10644,19 @@ a.text-dark:focus {
   }
 }
 
+.nopadleft {
+  padding-left: 0;
+}
+
+.nopadright {
+  padding-right: 0;
+}
+
+.nopad {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .filter-container {
   display: none;
 }

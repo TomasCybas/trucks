@@ -46,6 +46,15 @@
                                     {{$errors->first('address')}}
                                 </div>
                             @endif
+                            <div class="form-group">
+                                <label for="address">Mokėjimo atidėjimo terminas (dienomis)</label>
+                                <input type="text" name="deferred_payment_days" id="deferred_payment_days" class="form-control" value="{{old('deferred_payment_days')}}" >
+                            </div>
+                            @if($errors->has('deferred_payment_days'))
+                                <div class="alert alert-danger">
+                                    {{$errors->first('deferred_payment_days')}}
+                                </div>
+                            @endif
                             <button type="submit" class="btn btn-success">Pridėti</button>
                         </form>
                     </div>

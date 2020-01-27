@@ -12,7 +12,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for="client_id">Klientas</label>
-                                <select type="text" name="client_id" id="client_id" class="form-control" required>
+                                <select type="text" name="client_id" id="client_id" class="form-control client-select2" required>
                                     <option selected value="{{$booking->client_id}}">{{$booking->client->name}}</option>
                                 </select>
 
@@ -21,7 +21,6 @@
                                 <label for="loading_city_id">Pakrovimo miestas</label>
                                 <select type="text" name="loading_city_id" id="loading_city_id" class="form-control city-select2" required>
                                     <option selected value="{{$booking->loading_city_id}}">{{$booking->loadingCity->name}}</option>
-
                                 </select>
                             </div>
                             <div class="form-group">
@@ -54,10 +53,6 @@
                                 <input type="date" name="loading_date" id="loading_date" class="form-control" required value="{{$booking->loading_date}}">
                             </div>
                             <div class="form-group">
-                                <label for="unloading_date">Iškrovimo data</label>
-                                <input type="date" name="unloading_date" id="unloading_date" class="form-control" required value="{{$booking->unloading_date}}">
-                            </div>
-                            <div class="form-group">
                                 <label for="driver_id">Vairuotojas</label>
                                 <select type="text" name="driver_id" id="driver_id" class="form-control" required>
                                     <option selected value="{{$booking->driver_id}}">{{$booking->driver->name}} {{$booking->driver->surname}}</option>
@@ -87,15 +82,6 @@
                                 <label for="price">Kaina</label>
                                 <input type="text" name="price" id="price" class="form-control" required value="{{$booking->price/100}}">
                             </div>
-                            <div class="form-group">
-                                <label for="currency">Valiuta</label>
-                                <select type="text" name="currency" id="currency" class="form-control" required>
-                                    <option selected value="{{$booking->currency}}">{{$booking->currency}}</option>
-                                    <option value="1">EUR</option>
-                                    <option value="2">USD</option>
-                                </select>
-                            </div>
-
 
                             <button type="submit" class="btn btn-success">Išsaugoti</button>
                         </form>

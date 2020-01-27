@@ -64,6 +64,7 @@ Auth::routes();
     Route::get('/invoices', 'InvoiceController@index')->name('invoices');
     Route::get('/invoice/create/{booking}', 'InvoiceController@create')->name('invoice.create');
     Route::post('/invoice/store/{booking}', 'InvoiceController@store')->name('invoice.store');
+    Route::get('/invoice/pdf/{invoice}', 'InvoiceController@getPDF')->name('invoice.pdf');
 
 //});
 

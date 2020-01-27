@@ -17,8 +17,10 @@ class CreateInvoicesTable extends Migration
             $table->bigIncrements('id');
             $table->string('invoice_no')->unique();
             $table->date('date');
+            $table->date('payment_date');
             $table->unsignedBigInteger('client_id');
             $table->integer('total')->unsigned();
+            $table->enum('vat', ['Taip', 'Ne']);
 
             $table->timestamps();
 

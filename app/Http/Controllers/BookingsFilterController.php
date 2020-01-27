@@ -28,7 +28,7 @@ class BookingsFilterController extends Controller
             'client',
             'loadingCity',
             'unloadingCity'
-        ])->where($query)->get();
+        ])->where($query)->orderBy('created_at', 'desc')->get();
         $drivers = Driver::all();
         $trucks = Truck::all();
 

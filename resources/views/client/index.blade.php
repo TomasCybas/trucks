@@ -6,7 +6,6 @@
                 <div class="card">
                     <div class="card-header">Dashboard</div>
                     {{--TODO: add backend validation error messages--}}
-
                     <div class="card-body">
                         <a href="{{route('client.create')}}" class="btn btn-success btn-lg mb-4">Pridėti naują</a>
                         <br>
@@ -32,10 +31,8 @@
                                         <a href="{{route('client.delete', $client->id)}}" onclick="return confirm('Ar tikrai norite ištrinti?')" class="btn btn-sm btn-danger">Ištrinti</a>
                                     </td>
                                 </tr>
-
                             @endforeach
                             </tbody>
-
                         </table>
                     </div>
                 </div>

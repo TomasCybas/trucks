@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Invoice extends Model
 {
     public function items() {
-        return $this->hasMany('App/InvoiceItem');
+        return $this->hasMany('App\InvoiceItem');
     }
 
     public function client() {
-        return $this->belongsTo('App/Client');
+        return $this->belongsTo('App\Client');
     }
 }

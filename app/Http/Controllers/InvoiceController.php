@@ -6,11 +6,12 @@ use App\Booking;
 use App\Invoice;
 use App\InvoiceItem;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class InvoiceController extends Controller
 {
     public function index() {
-        $invoices = Invoice::all();
+        $invoices = Invoice::with(['client'])->get();
 
         return view('invoice.index', ['invoices' => $invoices]);
     }
@@ -24,25 +25,28 @@ class InvoiceController extends Controller
         return view('invoice.create', ['booking' => $booking, 'invoice_no' => $invoice_no + 1]);
     }
 
-    public function store(Request $request, Booking $booking) {
+    public function store(Request $request) {
+
 
         $this->validate($request, [
                 'invoice_no' => 'required|unique:invoices',
                 'date' => 'required',
                 'client_id' => 'required',
-                'total' => 'required',
-                '*.item_name' => 'required',
-                '*.item_quantity' => 'required',
-                '*.item_price' => 'required',
-                '*.item_total' => 'required',
+                'grand_total' => 'required',
+                'lines.*.item_name' => 'required',
+                'lines.*.item_quantity' => 'required',
+                'lines.*.item_price' => 'required',
+                'lines.*.item_total' => 'required',
             ],
             ['required' => 'Laukas privalomas']
         );
 
+
         $invoice = new Invoice();
         $invoice->invoice_no = $request->invoice_no;
         $invoice->date = $request->date;
-        $invoice->client_id = $booking->client_id;
+        $invoice->payment_date = $request->payment_date;
+        $invoice->client_id = $request->client_id;
         $invoice->total = $request->grand_total*100;
 
         $invoice->save();
@@ -61,17 +65,18 @@ class InvoiceController extends Controller
 
         return redirect()->route('invoices')->with('success', 'Kažkas buvo');
 
-        //TODO:
-        // write validation rules for invoice and lines.
-        // make a PDF view file and implement creating PDF from a created invoice.
-        // hidden input on invoice create with grandTotal value;
-        // Input field with invoice serial number. Fetch max value from DB and increment by 1. Allow to edit, check
-        // in validation if it exists already.
-        // Allow to edit/delete invoices.
-        // Add deferred payment days to invoice table
-        // Add payment @date in invoice.create and model
-        // Write validation for 2d array of invoice items
+    }
 
-
+    public function getPDF(Invoice $invoice) {
+        $pdf = PDF::loadView('invoice.pdf', ['invoice' => $invoice]);
+        return $pdf->stream('invoice.pdf');
     }
 }
+
+
+
+//TODO:
+// make a PDF view file and implement creating PDF from a created invoice.
+// Allow to edit invoice, check in validation if it exists already.
+// Allow to edit/delete invoices.
+// Add pay at date field in invoice.create and model

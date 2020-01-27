@@ -9,7 +9,7 @@ use Illuminate\Http\Response;
 class ClientController extends Controller
 {
     public function index(){
-        $clients = Client::all();
+        $clients = Client::all()->reverse();
         return view('client.index', ['clients' => $clients] );
     }
 
@@ -35,6 +35,7 @@ class ClientController extends Controller
         $client->company_code= $request->company_code;
         $client->vat_code= $request->vat_code;
         $client->address= $request->address;
+        $client->deferred_payment_days = $request->deferred_payment_days;
         $client->save();
         return redirect()->route('clients')->with('success', "Pridėta įmonė $client->name");
     }
@@ -48,8 +49,8 @@ class ClientController extends Controller
 
         $this->validate($request, [
             'name' => 'required',
-            'company_code' => 'unique:clients,company_code',
-            'vat_code' => 'unique:clients,vat_code',
+            'company_code' => "unique:clients,company_code,$id",
+            'vat_code' => "unique:clients,vat_code,$id",
         ],
             [
                 'name.required' => 'Pavadinimo laukas privalomas',
@@ -62,6 +63,7 @@ class ClientController extends Controller
         $client->company_code= $request->company_code;
         $client->vat_code= $request->vat_code;
         $client->address= $request->address;
+        $client->deferred_payment_days = $request->deferred_payment_days;
         $client->save();
 
         return redirect()->route('clients')->with('success', "$client->name informacija atnaujinta");
