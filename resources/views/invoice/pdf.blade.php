@@ -164,7 +164,8 @@
                        <th style="text-align: right">PVM suma</th>
                    </tr>
                     <tr>
-                        <td><strong>du šimtai penkiolika</strong></td>
+                        <?php $fmt= new NumberFormatter('lt', NumberFormatter::SPELLOUT); ?>
+                        <td><strong>{{$fmt->format('123')}}</strong></td>
                         <td style="text-align: right">21%</td>
                         <td style="text-align: right;">123 eur</td>
                     </tr>
