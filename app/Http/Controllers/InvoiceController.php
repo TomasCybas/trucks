@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Booking;
+use App\Client;
 use App\Invoice;
 use App\InvoiceItem;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
+use NumberFormatter;
 
 class InvoiceController extends Controller
 {
@@ -16,13 +18,19 @@ class InvoiceController extends Controller
         return view('invoice.index', ['invoices' => $invoices]);
     }
 
-    public function create(Booking $booking) {
+    public function create(Booking $booking = null) {
         $invoice_no = Invoice::max('invoice_no');
         if($invoice_no == null) {
             $invoice_no = 0;
         }
 
-        return view('invoice.create', ['booking' => $booking, 'invoice_no' => $invoice_no + 1]);
+        if($booking != null) {
+            return view('invoice.create', ['booking' => $booking, 'invoice_no' => $invoice_no + 1]);
+        }
+        else {
+            return view('invoice.create', ['invoice_no' => $invoice_no +1]);
+        }
+
     }
 
     public function store(Request $request) {
@@ -63,12 +71,23 @@ class InvoiceController extends Controller
             $invoice_item->save();
         }
 
-        return redirect()->route('invoices')->with('success', 'Kažkas buvo');
+        return redirect()->route('invoices')->with('success', 'Išsaugota');
 
     }
 
     public function getPDF(Invoice $invoice) {
-        $pdf = PDF::loadView('invoice.pdf', ['invoice' => $invoice]);
+        $vat = 0.21;
+        $vat_total = $invoice->total * $vat;
+        $grand_total = $invoice->total + $vat_total;
+        $whole = floor($grand_total/100);
+        $decimal = $grand_total % 100;
+        $fmt= new NumberFormatter('lt', NumberFormatter::SPELLOUT);
+        $total_string = $fmt->format(($whole)).' eur. ir '.$fmt->format($decimal).' ct.';
+        $pdf = PDF::loadView('invoice.pdf', ['invoice' => $invoice,
+                                            'vat_total' => $vat_total,
+                                            'grand_total' => $grand_total,
+                                            'total_string' => $total_string
+                                            ]);
         return $pdf->stream('invoice.pdf');
     }
 }

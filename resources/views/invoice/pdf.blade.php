@@ -100,21 +100,17 @@
             UAB Transbrieva<br>
             Įm. kodas: 304181177<br>
             PVM mok. kodas: LT100009993918<br>
-            Dariaus ir Girėno g. 49-4, LT-75128 Šilalė ashkhkahjsd akjh dkasjhd jkashd kajshdkjashd kashjd kashj<br>
+            Dariaus ir Girėno g. 49-4, LT-75128 Šilalė<br>
             A/S: LT137300010145924488
 
         </div>
         <div class="buyer">
             <span><strong>PIRKĖJAS</strong></span> <br> <br>
-
-            UAB Transbrieva<br>
-            Įm. kodas: 304181177<br>
-            PVM mok. kodas: LT100009993918<br>
-            Dariaus ir Girėno g. 49-4, LT-75128 Šilalė kashdkhas kjhask jhaskhd kjhadsh kashdjkhsa kdhk<br>
-            +37062927218 <br>
-            transbrieva@gmail.com
+            {{$invoice->client->name}}<br>
+            Įm. kodas: {{$invoice->client->company_code}}<br>
+            PVM mok. kodas: {{$invoice->client->vat_code}}<br>
+            {{$invoice->client->address}}<br>
         </div>
-
     </div>
 </section>
 
@@ -133,19 +129,21 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @foreach($invoice->items as $item)
                     <tr>
+                        <td>{{$item->name}}</td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{$item->quantity}}</td>
+                        <td>{{$item->price/100}}</td>
+                        <td>{{$item->total/100}}</td>
                     </tr>
+                    @endforeach
                     <tr>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td><strong>Iš viso:</strong></td>
-                        <td><strong></strong></td>
+                        <td><strong>{{$invoice->total/100}}</strong></td>
                     </tr>
                     <tr>
                         <td style="height: 15px;"></td>
@@ -164,15 +162,14 @@
                        <th style="text-align: right">PVM suma</th>
                    </tr>
                     <tr>
-                        <?php $fmt= new NumberFormatter('lt', NumberFormatter::SPELLOUT); ?>
-                        <td><strong>{{$fmt->format('123')}}</strong></td>
+                        <td><strong>{{$total_string}}</strong></td>
                         <td style="text-align: right">21%</td>
-                        <td style="text-align: right;">123 eur</td>
+                        <td style="text-align: right;">{{$vat_total/100}}</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td style="text-align: right">Bendra suma:</td>
-                        <td style="text-align: right">123</td>
+                        <td style="text-align: right">{{$grand_total/100}}</td>
                     </tr>
                     <tr>
                         <td>Apmokėti iki 2020-20-20</td>
@@ -209,4 +206,4 @@
 
 </html>
 
-{{--todo: suma žodžiais????--}}
+{{--todo: suma žodžiais išskirti eurus ir centus--}}

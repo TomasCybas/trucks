@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">Sąskaita</div>
                     <div class="card-body">
-                        <form id="invoice-form" method="post" action="{{route('invoice.store', $booking)}}">
+                        <form id="invoice-form" method="post" action="{{route('invoice.store')}}">
                             @csrf
                             <div class="col-4 nopadleft">
                                 <div class="form-group">
@@ -15,6 +15,7 @@
                                     <select type="text" name="client_id" id="client_id" class="form-control client-select2" required>
                                         @if(isset($booking))
                                             <option selected value="{{$booking->client_id}}">{{$booking->client->name}}</option>
+                                            @else
                                         @endif
                                     </select>
                                 </div>
@@ -25,7 +26,9 @@
                                         <label class="col-form-label col-3">
                                             Apmokėti iki:
                                             <input type="date" name="payment_date" class="form-control"
+                                                   @if(isset($booking))
                                                    value="{{\Carbon\Carbon::today()->addDays($booking->client->deferred_payment_days)->toDateString()}}" required>
+                                                   @endif
                                         </label>
                                     </div>
                                 </div>
@@ -70,7 +73,11 @@
                                         <div class="form-group form-row">
                                             <label class="col-form-label col-12">
                                                 Kaina
-                                                <input type="text" name="lines[0][item_price]" class="form-control item-price" value="{{$booking->price/100}}" required>
+                                                <input type="text" name="lines[0][item_price]" class="form-control item-price"
+                                                       @if(isset($booking))
+                                                       value="{{$booking->price/100}}"
+                                                       @endif
+                                                       required>
                                             </label>
                                         </div>
                                     </div>
