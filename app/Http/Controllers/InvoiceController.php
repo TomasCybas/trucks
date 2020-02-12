@@ -70,8 +70,13 @@ class InvoiceController extends Controller
             $invoice_item->total = $line['item_total']*100;
             $invoice_item->save();
         }
-
         return redirect()->route('invoices')->with('success', 'Išsaugota');
+    }
+
+    public function edit($id) {
+        $invoice = Invoice::find($id);
+
+        return view('invoice.edit', ['invoice' => $invoice] );
 
     }
 

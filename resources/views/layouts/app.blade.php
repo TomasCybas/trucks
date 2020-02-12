@@ -50,6 +50,9 @@
                         <li class="nav-item">
                             <a href="{{route('clients')}}" class="nav-link">Klientų sąrašas</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{route('invoices')}}" class="nav-link">Sąskaitų sąrašas</a>
+                        </li>
 
                     </ul>
 
