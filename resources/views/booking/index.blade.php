@@ -38,8 +38,10 @@
                                                 <select type="text" name="container_type" id="container_type"
                                                         class="form-control">
                                                     <option value="">Pasirinkite konteinerio tipą</option>
-                                                    <option value="1">Type A</option>
-                                                    <option value="2">Type B</option>
+                                                    <option value="1">40'DV</option>
+                                                    <option value="2">40'HQ</option>
+                                                    <option value="3">20'DV</option>
+                                                    <option value="4">40'REF</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -67,14 +69,22 @@
                                                         <option
                                                             value="{{$driver->id}}">{{$driver->name}} {{$driver->surname}}</option>
                                                     @endforeach
-
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="driver_id">Sunkvežimis</label>
+                                                <select type="text" name="truck_id" id="truck_id"
+                                                        class="form-control truck-select2 noModal">
+                                                    <option></option>
+                                                    @foreach($trucks as $truck)
+                                                        <option
+                                                            value="{{$truck->id}}">{{$truck->brand}} {{$truck->model}}, valst. nr.: {{$truck->reg_number}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-dark">Filtruoti</button>
-
-                                    {{--TODO: create a form for filtering results--}}
                                 </form>
                             </div>
                         </div>
@@ -107,7 +117,7 @@
                                     <td>{{$booking->type}}</td>
                                     <td>{{$booking->driver->name.' '.$booking->driver->surname}}</td>
                                     <td>{{$booking->truck->brand.' '.$booking->truck->model.' '.$booking->truck->reg_number}}</td>
-                                    <td>{{$booking->vat}}</td>
+                                    <td>{{$booking->vat == "1" ? "Taip" : "Ne"}}</td>
                                     <td>{{$booking->price/100}}</td>
                                     <td>
                                         <a href="{{route('invoice.create', $booking)}}" class="btn btn-sm btn-success mb-1">Sąskaita</a>

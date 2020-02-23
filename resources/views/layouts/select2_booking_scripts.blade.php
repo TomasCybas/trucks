@@ -43,8 +43,46 @@
             })
         }
 
+        //Handles select search for bookings on invoice create
+        function initSelect(url){
+            $('.booking-select2').select2({
+                ajax: {
+                    url: url,
+                },
+                placeholder: "Pasirinkti konteinerį",
+                width: "100%",
+                language: {
+                    "noResults": function () {
+                        return 'Nėra atitikmenų'
+                    }
+                },
+                escapeMarkup: function (markup) {
+                    return markup
+                }
+            });
+        }
+
+        function initSelect2(){
+            var client = $('#client_id').val();
+            var url = '{{route('select.booking', ":client")}}';
+            var newUrl = url.replace(":client", client);
+            initSelect(newUrl);
+            $('#client_id').on('change', function() {
+                client = $(this).val();
+                newUrl = url.replace(":client", client);
+                initSelect(newUrl);
+            });
+        }
+
 
         $(document).ready(function () {
+            initSelect2();
+
+            $('#add_invoice_line').on('click', function() {
+                initSelect2();
+            });
+
+
             //Handles select search for cities
             $(".city-select2").select2({
                 ajax: {

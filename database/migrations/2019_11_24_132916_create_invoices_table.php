@@ -20,8 +20,7 @@ class CreateInvoicesTable extends Migration
             $table->date('payment_date');
             $table->unsignedBigInteger('client_id');
             $table->integer('total')->unsigned();
-            $table->enum('vat', ['Taip', 'Ne']);
-
+            $table->tinyInteger('vat')->unsigned()->default(0);
             $table->timestamps();
 
             $table->foreign('client_id')->references('id')->on('clients');

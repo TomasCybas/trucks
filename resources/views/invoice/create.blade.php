@@ -27,8 +27,9 @@
                                             Apmokėti iki:
                                             <input type="date" name="payment_date" class="form-control"
                                                    @if(isset($booking))
-                                                   value="{{\Carbon\Carbon::today()->addDays($booking->client->deferred_payment_days)->toDateString()}}" required>
+                                                   value="{{\Carbon\Carbon::today()->addDays($booking->client->deferred_payment_days)->toDateString()}}"
                                                    @endif
+                                                   required>
                                         </label>
                                     </div>
                                 </div>
@@ -43,7 +44,7 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group form-row">
-                                            <label for="invoice_no" class="col-form-label col-7"><strong>Sąskaita SKS</strong> </label>
+                                            <label for="invoice_no" class="col-form-label col-7"><strong>Sąskaita TRANS</strong> </label>
                                             <div class="col-5">
                                                 <input id="invoice_no" name="invoice_no" type="text" class="form-control" value="{{$invoice_no}}">
                                             </div>
@@ -53,11 +54,22 @@
                             </div>
                             <div class="invoice-lines-container">
                                 <div class="form-row invoice-line">
-                                    <div class="col-7">
+                                    <div class="col-4">
                                         <div class="form-group form-row">
                                             <label class="col-form-label col-12">
                                                 Paslauga/pavadinimas
                                                 <input type="text" name="lines[0][item_name]" class="form-control item-name" required>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-group form-row">
+                                            <label class="col-form-label col-12">
+                                                Konteinerio nr.
+                                                <select type="text" name="lines[0][booking_id]" class="form-control booking-select2">
+                                                    <option></option>
+                                                    {{--{{TODO: fill values as data-attributes--}}
+                                                </select>
                                             </label>
                                         </div>
                                     </div>
@@ -95,6 +107,10 @@
                             <input type="hidden" name="grand_total">
                             <div class="grand-total text-right">Iš viso: <span></span></div>
                             <div class="form-group mt-4 text-right">
+                                <div class="form-check form-group">
+                                    <input type="checkbox" id="vat" name="vat" value="1" class="form-check-input">
+                                    <label for="vat" class="form-check-label">PVM</label>
+                                </div>
                                 <button type="submit" class="btn btn-success">Išsaugoti</button>
                             </div>
                         </form>
@@ -146,5 +162,8 @@
         </div>
     </div>
 @endsection
+<script>
+
+</script>
 
 @include('layouts.select2_booking_scripts')

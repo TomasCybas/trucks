@@ -49366,12 +49366,13 @@ $(document).ready(function () {
   calcTotals();
   calcGrandTotal(); // generate invoice lines
 
-  var i = 1;
+  var i = $('.invoice-line').length + 1;
   $('#add_invoice_line').on('click', function (e) {
     e.preventDefault();
-    var invoiceLine = '                                <div class="form-row invoice-line">\n' + '                                    <div class="col-7">\n' + '                                        <div class="form-group form-row">\n' + '                                            <label class="col-form-label col-12">\n' + '                                                Paslauga/pavadinimas\n' + '                                                <input type="text" name="lines[' + i + '][item_name]" class="form-control item-name" required>\n' + '                                            </label>\n' + '                                        </div>\n' + '\n' + '                                    </div>\n' + '                                    <div class="col-1">\n' + '                                        <div class="form-group form-row">\n' + '                                            <label class="col-form-label col-12">\n' + '                                                Kiekis\n' + '                                                <input type="text" name=" lines[' + i + '][item_quantity]" class="form-control item-quantity" required >\n' + '                                            </label>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-2">\n' + '                                        <div class="form-group form-row">\n' + '                                            <label class="col-form-label col-12">\n' + '                                                Kaina\n' + '                                                <input type="text" name="lines[' + i + '][item_price]" class="form-control item-price" required >\n' + '                                            </label>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-2">\n' + '                                        <div class="form-group form-row">\n' + '                                            <label class="col-form-label col-9">\n' + '                                                Viso\n' + '                                                <input type="text" name="lines[' + i + '][item_total]" class="form-control item-total" value="" readonly>\n' + '                                            </label>\n' + '                                           <div class="col-form-label col-2">\n' + '                                              <br>\n' + '                                                <a href="#" class="btn btn-danger remove-line">X</a>\n' + '                                           </div>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                </div>\n';
+    var invoiceLine = '                                <div class="form-row invoice-line">\n' + '                                    <div class="col-4">\n' + '                                        <div class="form-group form-row">\n' + '                                            <label class="col-form-label col-12">\n' + '                                                Paslauga/pavadinimas\n' + '                                                <input type="text" name="lines[' + i + '][item_name]" class="form-control item-name" required>\n' + '                                            </label>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-3">\n' + '                                        <div class="form-group form-row">\n' + '                                            <label class="col-form-label col-12">\n' + '                                                Konteinerio nr.\n' + '                                                <select type="text" name="lines[' + i + '][booking_id]" class="form-control booking-select2">\n' + '                                                    <option></option>\n' + '                                                </select>\n' + '                                            </label>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-1">\n' + '                                        <div class="form-group form-row">\n' + '                                            <label class="col-form-label col-12">\n' + '                                                Kiekis\n' + '                                                <input type="text" name=" lines[' + i + '][item_quantity]" value="1" class="form-control item-quantity" required >\n' + '                                            </label>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-2">\n' + '                                        <div class="form-group form-row">\n' + '                                            <label class="col-form-label col-12">\n' + '                                                Kaina\n' + '                                                <input type="text" name="lines[' + i + '][item_price]" class="form-control item-price" required >\n' + '                                            </label>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                    <div class="col-2">\n' + '                                        <div class="form-group form-row">\n' + '                                            <label class="col-form-label col-9">\n' + '                                                Viso\n' + '                                                <input type="text" name="lines[' + i + '][item_total]" class="form-control item-total" value="" readonly>\n' + '                                            </label>\n' + '                                           <div class="col-form-label col-2">\n' + '                                              <br>\n' + '                                                <a href="#" class="btn btn-danger remove-line">X</a>\n' + '                                           </div>\n' + '                                        </div>\n' + '                                    </div>\n' + '                                </div>\n';
     $('.invoice-lines-container').append(invoiceLine);
     i++;
+    bookingSelectEventListener();
     $('input.item-quantity, input.item-price').on('change', function () {
       calcTotals();
     }); //delete invoice lines
@@ -49381,6 +49382,12 @@ $(document).ready(function () {
       $(this).closest($('.invoice-line')).remove();
       calcGrandTotal();
     });
+  }); //delete invoice lines
+
+  $('.remove-line').on('click', function (e) {
+    e.preventDefault();
+    $(this).closest($('.invoice-line')).remove();
+    calcGrandTotal();
   }); //calc total for each line and grand total
 
   function calcTotals() {
@@ -49389,7 +49396,6 @@ $(document).ready(function () {
       var qnt = parseFloat($(this).find('input.item-quantity').val().replace(',', '.'));
       var price = parseFloat($(this).find('input.item-price').val().replace(',', '.'));
       total = qnt * price;
-      console.log(total);
 
       if (total >= 0) {
         $(this).find('input.item-total').val(total);
@@ -49411,6 +49417,26 @@ $(document).ready(function () {
     $('.grand-total span').html(grandTotal);
     $('input[name=grand_total]').val(grandTotal);
   }
+
+  function bookingSelectEventListener() {
+    $('.booking-select2').on('change', function () {
+      var data = $(this).select2('data')[0];
+      console.log(data);
+      var price = data.price / 100;
+      $(this).closest('.invoice-line').find('input.item-price').val(price);
+      calcTotals();
+    });
+  }
+
+  bookingSelectEventListener();
+  /*   function initBookingSelectEdit(control, id, text, price) {
+         var data =  {
+             id: id,
+             text: text,
+             price: price,
+         };
+         var initOption = new Option( data.text, data.id , false, false)
+     }*/
 });
 
 /***/ }),

@@ -28,7 +28,7 @@
                                     <td>
                                         <a href="{{route('invoice.pdf', $invoice)}}" class="btn btn-sm btn-success">PDF</a>
                                         <a href="{{route('invoice.edit', $invoice)}}" class="btn btn-sm btn-success">Koreguoti</a>
-                                        <a href="" onclick="return confirm('Ar tikrai norite ištrinti?')" class="btn btn-sm btn-danger">Ištrinti</a>
+                                        <a href="{{route('invoice.delete', $invoice)}}" onclick="return confirm('Ar tikrai norite ištrinti?')" class="btn btn-sm btn-danger">Ištrinti</a>
                                     </td>
                                 </tr>
                             @endforeach

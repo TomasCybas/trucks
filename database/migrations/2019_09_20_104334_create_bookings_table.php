@@ -17,7 +17,7 @@ class CreateBookingsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('client_id');
             //TODO container types to be added
-            $table->enum('container_type', ['Tipas A', 'Tipas B']);
+            $table->enum('container_type', ["40''DV", "40''HQ", "20''DV", "40''REF"]);
             $table->string('container_no', 11);
             $table->unsignedBigInteger('loading_city_id');
             $table->unsignedBigInteger('unloading_city_id');
@@ -25,8 +25,9 @@ class CreateBookingsTable extends Migration
             $table->date('loading_date');
             $table->unsignedBigInteger('driver_id');
             $table->unsignedBigInteger('truck_id');
-            $table->enum('vat', ['Taip', 'Ne']);
+            $table->tinyInteger('vat')->unsigned()->default(0);
             $table->integer('price')->unsigned();
+            $table->tinyInteger('invoiced')->unsigned()->default(0);
             $table->timestamps();
 
 

@@ -117,15 +117,15 @@
 <section>
     <table>
         <tr>
-            <td>
+            <td style="border-top: 2px solid black;">
                 <table>
                     <thead>
                     <tr>
                         <th>Prekės, turto ar paslaugos pavadinimas</th>
                         <th>Mato vnt.</th>
                         <th>Kiekis</th>
-                        <th>Kaina</th>
-                        <th>Suma</th>
+                        <th style="text-align: right">Kaina</th>
+                        <th style="text-align: right">Suma</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -134,16 +134,16 @@
                         <td>{{$item->name}}</td>
                         <td></td>
                         <td>{{$item->quantity}}</td>
-                        <td>{{$item->price/100}}</td>
-                        <td>{{$item->total/100}}</td>
+                        <td style="text-align: right">{{$item->price/100}} EUR</td>
+                        <td style="text-align: right">{{$item->total/100}} EUR</td>
                     </tr>
                     @endforeach
                     <tr>
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><strong>Iš viso:</strong></td>
-                        <td><strong>{{$invoice->total/100}}</strong></td>
+                        <td style="border-top: 2px solid black; text-align: right"><strong>Iš viso:</strong></td>
+                        <td style="border-top: 2px solid black; text-align: right"><strong>{{$invoice->total/100}} EUR</strong></td>
                     </tr>
                     <tr>
                         <td style="height: 15px;"></td>
@@ -153,23 +153,23 @@
             </td>
         </tr>
         <tr>
-            <td>
+            <td style="border-top: 2px solid black;">
                 <table>
                     <thead>
                    <tr>
                        <th style="width: 60%">Suma žodžiais:</th>
-                       <th style="text-align: right">Apmokestinama PVM</th>
+                       <th style="text-align: right">{{$invoice->vat == 1 ? 'Apmokestinama PVM' : '45 straipsnis 1-3 dalys'}}</th>
                        <th style="text-align: right">PVM suma</th>
                    </tr>
                     <tr>
                         <td><strong>{{$total_string}}</strong></td>
-                        <td style="text-align: right">21%</td>
-                        <td style="text-align: right;">{{$vat_total/100}}</td>
+                        <td style="text-align: right">{{$invoice->vat == 1 ? '21%' : ''}}</td>
+                        <td style="text-align: right;">{{$vat_total/100}} EUR</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td style="text-align: right">Bendra suma:</td>
-                        <td style="text-align: right">{{$grand_total/100}}</td>
+                        <td style="text-align: right">{{$grand_total/100}} EUR</td>
                     </tr>
                     <tr>
                         <td>Apmokėti iki 2020-20-20</td>

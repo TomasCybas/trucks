@@ -49,7 +49,6 @@ class BookingController extends Controller
             'loading_date' => 'required',
             'driver_id' => 'required',
             'truck_id' => 'required',
-            'vat' => 'required',
             'price' => 'required',
         ],
             [
@@ -66,7 +65,9 @@ class BookingController extends Controller
         $booking->loading_date = $request->loading_date;
         $booking->driver_id = $request->driver_id;
         $booking->truck_id = $request->truck_id;
-        $booking->vat = $request->vat;
+        if(isset($request->vat)) {
+            $booking->vat = $request->vat;
+        }
         $booking->price =  (float)$request->price*100;
         $booking->save();
         return redirect()->route('bookings')->with('success', 'Užsakymas sukurtas.');
@@ -96,7 +97,6 @@ class BookingController extends Controller
             'loading_date' => 'required',
             'driver_id' => 'required',
             'truck_id' => 'required',
-            'vat' => 'required',
             'price' => 'required',
         ],
             [
@@ -113,7 +113,12 @@ class BookingController extends Controller
         $booking->loading_date = $request->loading_date;
         $booking->driver_id = $request->driver_id;
         $booking->truck_id = $request->truck_id;
-        $booking->vat = $request->vat;
+        if(isset($request->vat)) {
+            $booking->vat = $request->vat;
+        } else {
+            $booking->vat = "0";
+        }
+
         $booking->price =  (float)$request->price*100;
         $booking->save();
 

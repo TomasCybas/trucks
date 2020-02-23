@@ -37,8 +37,10 @@
                                 <label for="container_type">Konteinerio tipas</label>
                                 <select type="text" name="container_type" id="container_type" class="form-control" required>
                                     <option selected value="{{$booking->container_type}}">{{$booking->container_type}} </option>
-                                    <option value="1">Type A</option>
-                                    <option value="2">Type B</option>
+                                    <option value="1">40'DV</option>
+                                    <option value="2">40'HQ</option>
+                                    <option value="3">20'DV</option>
+                                    <option value="4">40'REF</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -71,18 +73,13 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="vat">PVM</label>
-                                <select type="text" name="vat" id="vat" class="form-control" required>
-                                    <option selected value="{{$booking->vat}}">{{$booking->vat}}</option>
-                                    <option value="2" >Ne</option>
-                                    <option value="1" >Taip</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
                                 <label for="price">Kaina</label>
                                 <input type="text" name="price" id="price" class="form-control" required value="{{$booking->price/100}}">
                             </div>
-
+                            <div class="form-check form-group">
+                                <input type="checkbox" id="vat" name="vat" value="1" {{$booking->vat == '1' ? 'checked' : ''}} class="form-check-input">
+                                <label for="vat" class="form-check-label">PVM</label>
+                            </div>
                             <button type="submit" class="btn btn-success">Išsaugoti</button>
                         </form>
                     </div>

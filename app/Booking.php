@@ -26,6 +26,9 @@ class Booking extends Model
     public function driver(){
         return $this->belongsTo('App\Driver');
     }
+    public function invoiceItem() {
+        return $this->belongsTo('App\InvoiceItem');
+    }
 
 
 

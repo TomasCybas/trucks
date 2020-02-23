@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Booking;
 use App\City;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -63,6 +64,30 @@ class Select2Controller extends Controller
             ];
         }
         return ['results' => $result];
+    }
+
+    public function bookingSelect2(Request $request, $id){
+        $querry = $request->term;
+        $bookings = DB::table('bookings')->where('client_id', '=', $id)->where('container_no', 'LIKE', '%' .$querry. '%')->get();
+        $result = [];
+        foreach ($bookings as $booking) {
+            $result[] = [
+                'id' => $booking->id,
+                'text' => $booking->container_no,
+                'price' => $booking->price,
+            ];
+        }
+        return ['results' => $result];
+    }
+
+    public function bookingSelect2Single($id) {
+        $booking = Booking::find($id);
+        $result = [
+            'id' => $booking->id,
+            'text' => $booking->container_no,
+            'price' => $booking->price,
+        ];
+        return ['results' => $result] ;
     }
 
 

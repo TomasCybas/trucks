@@ -20,9 +20,11 @@ class CreateInvoiceItemsTable extends Migration
             $table->integer('quantity')->unsigned();
             $table->integer('price')->unsigned();
             $table->integer('total')->unsigned();
+            $table->unsignedBigInteger('booking_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('invoice_id')->references('id')->on('invoices');
+            $table->foreign('invoice_id')->references('id')->on('invoices')->onDelete('cascade');
+            $table->foreign('booking_id')->references('id')->on('bookings')->onDelete('set null');
         });
     }
 

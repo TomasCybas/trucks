@@ -15,7 +15,7 @@
 //Authentification
 Auth::routes();
 
-//Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function () {
     //Drivers routes
     Route::get('/drivers', 'DriverController@index')->name('drivers');
     Route::get('/driver/create', 'DriverController@create')->name('driver.create');
@@ -56,8 +56,11 @@ Auth::routes();
     Route::get('/select2/clients', 'Select2Controller@clientSelect2')->name('select.client');
     Route::get('/select2/trucks', 'Select2Controller@truckSelect2')->name('select.truck');
     Route::get('/select2/drivers', 'Select2Controller@driverSelect2')->name('select.driver');
+    Route::get('/select2/bookings/{id}', 'Select2Controller@bookingSelect2')->name('select.booking');
+    Route::get('/select2/booking/{id}', 'Select2Controller@bookingSelect2Single')->name('select.booking.single');
 
-    //Filter routes
+
+//Filter routes
     Route::post('/filter/bookings', 'BookingsFilterController@filterBookings')->name('filter.bookings');
 
     //Invoice routes
@@ -65,9 +68,11 @@ Auth::routes();
     Route::get('/invoice/create/{booking?}', 'InvoiceController@create')->name('invoice.create');
     Route::post('/invoice/store', 'InvoiceController@store')->name('invoice.store');
     Route::get('/invoice/edit/{invoice}', 'InvoiceController@edit')->name('invoice.edit');
+    Route::post('/invoice/update{id}', 'InvoiceController@update')->name('invoice.update');
     Route::get('/invoice/pdf/{invoice}', 'InvoiceController@getPDF')->name('invoice.pdf');
+    Route::get('invoice/delete/{invoice}', 'InvoiceController@delete')->name('invoice.delete');
 
-//});
+});
 
 
 

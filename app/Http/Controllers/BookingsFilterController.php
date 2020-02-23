@@ -42,8 +42,5 @@ class BookingsFilterController extends Controller
                 'trucks' => $trucks,
             ]);
         }
-
-
-
     }
 }
