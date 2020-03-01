@@ -38,6 +38,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        @if(Auth::check())
                         <li class="nav-item">
                             <a href="{{route('home')}}" class="nav-link">Užsakymai</a>
                         </li>
@@ -53,6 +54,12 @@
                         <li class="nav-item">
                             <a href="{{route('invoices')}}" class="nav-link">Sąskaitų sąrašas</a>
                         </li>
+                        @if (Auth::user()->isAdmin())
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Registruoti naują vartotoją') }}</a>
+                            </li>
+                        @endif
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -60,13 +67,8 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Prisijungti') }}</a>
                             </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
