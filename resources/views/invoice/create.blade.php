@@ -3,58 +3,64 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-12">
+            <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">Sąskaita</div>
                     <div class="card-body">
                         <form id="invoice-form" method="post" action="{{route('invoice.store')}}">
-                            @csrf
-                            <div class="col-4 nopadleft">
-                                <div class="form-group">
-                                    <label for="client_id">Klientas</label>
-                                    <select type="text" name="client_id" id="client_id" class="form-control client-select2" required>
-                                        @if(isset($booking))
-                                            <option selected value="{{$booking->client_id}}">{{$booking->client->name}}</option>
+                            <div class="row mx-0">
+                                <div class="col-sm-12 col-lg-4 px-0">
+                                    <div class="form-group">
+                                        <label for="client_id">Klientas</label>
+                                        <select type="text" name="client_id" id="client_id" class="form-control client-select2" required>
+                                            @if(isset($booking))
+                                                <option selected value="{{$booking->client_id}}">{{$booking->client->name}}</option>
                                             @else
-                                        @endif
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-12 clearfix nopadleft">
-                                <div class="col-9 float-left nopadleft">
-                                    <div class="form-group form-row">
-                                        <label class="col-form-label col-3">
-                                            Apmokėti iki:
-                                            <input type="date" name="payment_date" class="form-control"
-                                                   @if(isset($booking))
-                                                   value="{{\Carbon\Carbon::today()->addDays($booking->client->deferred_payment_days)->toDateString()}}"
-                                                   @endif
-                                                   required>
-                                        </label>
+                                            @endif
+                                        </select>
                                     </div>
                                 </div>
-                                <div class="col-3 float-right">
-                                    <div class="col-12">
-                                        <div class="form-group form-row">
-                                            <label class="col-form-label col-12">
-                                                Išrašymo data
-                                                <input type="date" name="date" class="form-control" value="<?php echo \Carbon\Carbon::today()->toDateString() ?>" required>
-                                            </label>
+                                <div class="col-12 clearfix px-0">
+                                    <div class="row mx-0">
+                                        <div class="col-sm-12 col-md-6 col-lg-9 px-sm-0 pr-md-2">
+                                            <div class="form-group form-row mx-0">
+                                                <label class="col-form-label col-sm-12 col-lg-3 px-0">
+                                                    Apmokėti iki:
+                                                    <input type="date" name="payment_date" class="form-control"
+                                                           @if(isset($booking))
+                                                           value="{{\Carbon\Carbon::today()->addDays($booking->client->deferred_payment_days)->toDateString()}}"
+                                                           @endif
+                                                           required>
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group form-row">
-                                            <label for="invoice_no" class="col-form-label col-7"><strong>Sąskaita TRANS</strong> </label>
-                                            <div class="col-5">
-                                                <input id="invoice_no" name="invoice_no" type="text" class="form-control" value="{{$invoice_no}}">
+                                        <div class="col-sm-12 col-md-6 col-lg-3 px-sm-0 pl-md-2">
+                                            <div class="row mx-0">
+                                                <div class="col-sm-12 px-0">
+                                                    <div class="form-group form-row mx-0">
+                                                        <label class="col-form-label col-sm-12 px-0">
+                                                            Išrašymo data
+                                                            <input type="date" name="date" class="form-control" value="<?php echo \Carbon\Carbon::today()->toDateString() ?>" required>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 px-0">
+                                                    <div class="form-group form-row mx-0">
+                                                        <label for="invoice_no" class="col-form-label col-7 px-0"><strong>Sąskaita TRANS</strong> </label>
+                                                        <div class="col-5 px-0">
+                                                            <input id="invoice_no" name="invoice_no" type="text" class="form-control" value="{{$invoice_no}}">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            @csrf
                             <div class="invoice-lines-container">
                                 <div class="form-row invoice-line">
-                                    <div class="col-4">
+                                    <div class="col-sm-12 col-md-4">
                                         <div class="form-group form-row">
                                             <label class="col-form-label col-12">
                                                 Paslauga/pavadinimas
@@ -62,7 +68,7 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-sm-12 col-md-3">
                                         <div class="form-group form-row">
                                             <label class="col-form-label col-12">
                                                 Konteinerio nr.
@@ -73,7 +79,7 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="col-1">
+                                    <div class="col-sm-12 col-md-1">
                                         <div class="form-group form-row">
                                             <label class="col-form-label col-12">
                                                 Kiekis
@@ -81,7 +87,7 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-sm-12 col-md-2">
                                         <div class="form-group form-row">
                                             <label class="col-form-label col-12">
                                                 Kaina
@@ -93,9 +99,9 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-sm-12 col-md-2">
                                         <div class="form-group form-row">
-                                            <label class="col-form-label col-9">
+                                            <label class="col-form-label col-md-9">
                                                 Viso
                                                 <input type="text" name="lines[0][item_total]" class="form-control item-total" value="" readonly>
                                             </label>

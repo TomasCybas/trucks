@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <a href="{{route('driver.create')}}" class="btn btn-success btn-lg mb-4">Pridėti naują</a>
                         <br>
-                     <table class="table">
+                     <table class="table table-responsive-sm">
                          <thead>
                          <tr>
                              <th>Vardas</th>

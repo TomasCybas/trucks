@@ -8,7 +8,27 @@
                     <div class="card-header">Sąskaitos</div>
                     <div class="card-body">
                         <a href="{{route('invoice.create')}}" class="btn btn-success btn-lg mb-4">Pridėti naują</a>
-                        <table class="table">
+                        <div class="row">
+                            <form id="invoice-export-form" method="post">
+                                @csrf
+                                <div class="col-sm-12">
+                                    <div class="form-group form-row">
+                                        <label class="col-form-label col-sm-12 col-md-6">
+                                            Nuo
+                                            <input type="date" name="from_date" class="form-control" required>
+                                        </label>
+                                        <label class="col-form-label col-sm-12 col-md-6">
+                                            Iki
+                                            <input type="date" name="to_date" class="form-control" required>
+                                        </label>
+                                        <div class="col-sm-12">
+                                            <button type="submit" formaction="{{route('invoices.export_view')}}" class="btn btn-primary btn-lg mb-4">Eksportuoti</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <table class="table table-responsive-lg">
                             <thead>
                             <tr>
                                 <th>Sąsk. Nr.</th>

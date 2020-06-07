@@ -71,6 +71,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/invoice/update{id}', 'InvoiceController@update')->name('invoice.update');
     Route::get('/invoice/pdf/{invoice}', 'InvoiceController@getPDF')->name('invoice.pdf');
     Route::get('invoice/delete/{invoice}', 'InvoiceController@delete')->name('invoice.delete');
+    Route::get('invoice/export}', 'InvoiceController@export')->name('invoices.export');
+    Route::post('invoice/export_view}', 'InvoiceController@export_view')->name('invoices.export_view');
 
 });
 

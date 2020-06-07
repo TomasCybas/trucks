@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Booking;
 use App\Client;
+use App\Exports\InvoicesExport;
+use App\Exports\InvoicesExportView;
 use App\Invoice;
 use App\InvoiceItem;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
+use Maatwebsite\Excel\Facades\Excel;
 use NumberFormatter;
 
 class InvoiceController extends Controller
@@ -192,6 +195,15 @@ class InvoiceController extends Controller
         }
         Invoice::destroy($id);
         return redirect()->route('invoices');
+    }
+
+    public function export() {
+        return Excel::download(new InvoicesExport(), 'invoices.xlsx');
+    }
+
+    public function export_view(Request $request) {
+        return Excel::download(new InvoicesExportView( $request), 'invoices.xlsx');
+
     }
 }
 

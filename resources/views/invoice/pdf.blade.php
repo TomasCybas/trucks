@@ -164,12 +164,12 @@
                     <tr>
                         <td><strong>{{$total_string}}</strong></td>
                         <td style="text-align: right">{{$invoice->vat == 1 ? '21%' : ''}}</td>
-                        <td style="text-align: right;">{{$vat_total/100}} EUR</td>
+                        <td style="text-align: right;">{{round($vat_total/100, 2)}} EUR</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td style="text-align: right">Bendra suma:</td>
-                        <td style="text-align: right">{{$grand_total/100}} EUR</td>
+                        <td style="text-align: right">{{round($grand_total/100, 2)}} EUR</td>
                     </tr>
                     <tr>
                         <td>Apmokėti iki 2020-20-20</td>

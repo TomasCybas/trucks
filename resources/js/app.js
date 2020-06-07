@@ -44,7 +44,7 @@ $(document).ready(function () {
     $('#add_invoice_line').on('click', function (e) {
         e.preventDefault();
         var invoiceLine = '                                <div class="form-row invoice-line">\n' +
-            '                                    <div class="col-4">\n' +
+            '                                    <div class="col-sm-12 col-md-4">\n' +
             '                                        <div class="form-group form-row">\n' +
             '                                            <label class="col-form-label col-12">\n' +
             '                                                Paslauga/pavadinimas\n' +
@@ -52,7 +52,7 @@ $(document).ready(function () {
             '                                            </label>\n' +
             '                                        </div>\n' +
             '                                    </div>\n' +
-            '                                    <div class="col-3">\n' +
+            '                                    <div class="col-sm-12 col-md-3">\n' +
             '                                        <div class="form-group form-row">\n' +
             '                                            <label class="col-form-label col-12">\n' +
             '                                                Konteinerio nr.\n' +
@@ -62,7 +62,7 @@ $(document).ready(function () {
             '                                            </label>\n' +
             '                                        </div>\n' +
             '                                    </div>\n' +
-            '                                    <div class="col-1">\n' +
+            '                                    <div class="col-sm-12 col-md-1">\n' +
             '                                        <div class="form-group form-row">\n' +
             '                                            <label class="col-form-label col-12">\n' +
             '                                                Kiekis\n' +
@@ -70,7 +70,7 @@ $(document).ready(function () {
             '                                            </label>\n' +
             '                                        </div>\n' +
             '                                    </div>\n' +
-            '                                    <div class="col-2">\n' +
+            '                                    <div class="col-sm-12 col-md-2">\n' +
             '                                        <div class="form-group form-row">\n' +
             '                                            <label class="col-form-label col-12">\n' +
             '                                                Kaina\n' +
@@ -78,7 +78,7 @@ $(document).ready(function () {
             '                                            </label>\n' +
             '                                        </div>\n' +
             '                                    </div>\n' +
-            '                                    <div class="col-2">\n' +
+            '                                    <div class="col-sm-12 col-md-2">\n' +
             '                                        <div class="form-group form-row">\n' +
             '                                            <label class="col-form-label col-9">\n' +
             '                                                Viso\n' +

@@ -88,7 +88,7 @@
                                 </form>
                             </div>
                         </div>
-                        <table class="table">
+                        <table class="table table-responsive-xl">
                             <thead>
                             <tr>
                                 <th>Užsakovas</th>
