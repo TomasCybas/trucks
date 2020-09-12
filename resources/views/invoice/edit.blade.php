@@ -76,25 +76,27 @@
                                                         {{--<option selected
                                                                 value="{{$item->booking_id}}">{{$item->booking->container_no . 'selected'}}</option>--}}
                                                     </select>
-                                                    <script>
-                                                        lineSelect['{{$key}}'] = $('select[name="lines[{{$key}}][booking_id]"]');
-                                                        $.ajax({
-                                                            type: 'GET',
-                                                            url: '{{route('select.booking.single', $item->booking_id)}}'
-                                                        }).then(function (data) {
-                                                            var newData = data.results;
-                                                            var option = new Option(newData.text, newData.id, true, true);
-                                                            lineSelect['{{$key}}'].append(option);
-                                                            lineSelect['{{$key}}'].select2('data')[0].price = '{{$item->price}}';
-                                                            lineSelect['{{$key}}'].trigger('change');
-                                                            lineSelect['{{$key}}'].trigger({
-                                                                type: 'select2:select',
-                                                                params: {
-                                                                    newData
-                                                                }
-                                                            });
-                                                        })
-                                                    </script>
+                                                    @if(!empty($item->booking_id))
+                                                        <script>
+                                                            lineSelect['{{$key}}'] = $('select[name="lines[{{$key}}][booking_id]"]');
+                                                            $.ajax({
+                                                                type: 'GET',
+                                                                url: '{{route('select.booking.single', $item->booking_id)}}'
+                                                            }).then(function (data) {
+                                                                var newData = data.results;
+                                                                var option = new Option(newData.text, newData.id, true, true);
+                                                                lineSelect['{{$key}}'].append(option);
+                                                                lineSelect['{{$key}}'].select2('data')[0].price = '{{$item->price}}';
+                                                                lineSelect['{{$key}}'].trigger('change');
+                                                                lineSelect['{{$key}}'].trigger({
+                                                                    type: 'select2:select',
+                                                                    params: {
+                                                                        newData
+                                                                    }
+                                                                });
+                                                            })
+                                                        </script>
+                                                    @endif
                                                 </label>
                                             </div>
                                         </div>
